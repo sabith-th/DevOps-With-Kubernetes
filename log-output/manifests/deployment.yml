@@ -12,9 +12,24 @@ spec:
       labels:
         app: logoutput
     spec:
+      volumes:
+        - name: shared-image
+          emptyDir: {}
       containers:
-        - name: logoutput
-          image: k3s-default-registry:5000/log-output:v0.4
+        - name: logoutput-reader
+          image: k3s-default-registry:5000/log-output-reader:v0.4
+          volumeMounts:
+            - name: shared-image
+              mountPath: /usr/src/app/files
+          resources:
+            limits:
+              cpu: 50m
+              memory: 64M
+        - name: logoutput-writer
+          image: k3s-default-registry:5000/log-output-writer:v0.3
+          volumeMounts:
+            - name: shared-image
+              mountPath: /usr/src/app/files
           resources:
             limits:
               cpu: 50m
