@@ -12,10 +12,17 @@ spec:
       labels:
         app: ping-pong
     spec:
+      volumes:
+        - name: shared-image
+          persistentVolumeClaim:
+            claimName: mypvc
       containers:
         - name: logoutput
-          image: k3s-default-registry:5000/ping-pong:v0.1
+          image: k3s-default-registry:5000/ping-pong:v0.5
           resources:
             limits:
               cpu: 50m
               memory: 64M
+          volumeMounts:
+            - name: shared-image
+              mountPath: /usr/src/app/files
