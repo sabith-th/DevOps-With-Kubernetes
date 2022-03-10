@@ -12,10 +12,17 @@ spec:
       labels:
         app: project
     spec:
+      volumes:
+        - name: shared-image
+          persistentVolumeClaim:
+            claimName: mypvc
       containers:
         - name: project
-          image: k3s-default-registry:5000/project:v0.3
+          image: k3s-default-registry:5000/project:v0.6
           resources:
             limits:
               memory: "64Mi"
               cpu: "100m"
+          volumeMounts:
+            - name: shared-image
+              mountPath: /usr/src/app/files

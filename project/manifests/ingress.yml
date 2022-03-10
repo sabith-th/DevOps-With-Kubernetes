@@ -7,7 +7,7 @@ spec:
     - http:
         paths:
           - pathType: Prefix
-            path: "/"
+            path: "/project"
             backend:
               service:
                 name: project-svc
