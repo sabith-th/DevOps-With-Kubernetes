@@ -18,7 +18,7 @@ spec:
             claimName: mypvc
       containers:
         - name: project
-          image: k3s-default-registry:5000/project:v0.6
+          image: k3s-default-registry:5000/project:v0.7
           resources:
             limits:
               memory: "64Mi"

@@ -48,6 +48,13 @@ const buildResponse = (image) => {
   return `
     <h1>Picture of the Day</h1>
     <img src="data:image/jpeg;base64,${image.toString("base64")}" />
+    <h2>TODOs</h2>
+    <input type="text" id="todo-input" maxlength="140" />
+    <button id="todo-button">Create TODO</button>
+    <ul id="todo-list">
+      <li>Learn k8s</li>
+      <li>Complete Exercises</li>
+    </ul>
   `;
 };
 
